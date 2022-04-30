@@ -9,9 +9,9 @@
             </div>
             <div class="hidden lg:block lg:ml-10">
               <div class="flex space-x-4">
-                <a href="#" class="bg-indigo-700 text-white rounded-md py-2 px-3 text-sm font-medium" aria-current="page">Users</a>
-                <a href="#" class="text-white hover:bg-indigo-500 hover:bg-opacity-75 rounded-md py-2 px-3 text-sm font-medium">Files</a>
-                <a href="#" class="text-white hover:bg-indigo-500 hover:bg-opacity-75 rounded-md py-2 px-3 text-sm font-medium">Types</a>
+                <a routerLink="/users" class="text-white hover:bg-indigo-500 hover:bg-opacity-75 rounded-md py-2 px-3 text-sm font-medium" aria-current="page" routerLinkActive="bg-indigo-700">Users</a>
+                <a routerLink="/files" class="text-white hover:bg-indigo-500 hover:bg-opacity-75 rounded-md py-2 px-3 text-sm font-medium" routerLinkActive="bg-indigo-700">Files</a>
+                <a routerLink="/types" class="text-white hover:bg-indigo-500 hover:bg-opacity-75 rounded-md py-2 px-3 text-sm font-medium" routerLinkActive="bg-indigo-700">Types</a>
               </div>
             </div>
           </div>
@@ -34,10 +34,9 @@
 
       <div class="lg:hidden" id="mobile-menu">
         <div class="px-2 pt-2 pb-3 space-y-1">
-          <!-- Current: "bg-indigo-700 text-white", Default: "text-white hover:bg-indigo-500 hover:bg-opacity-75" -->
-          <a href="#" class="bg-indigo-700 text-white rounded-md py-2 px-3 text-sm font-medium" aria-current="page">Users</a>
-          <a href="#" class="text-white hover:bg-indigo-500 hover:bg-opacity-75 rounded-md py-2 px-3 text-sm font-medium">Files</a>
-          <a href="#" class="text-white hover:bg-indigo-500 hover:bg-opacity-75 rounded-md py-2 px-3 text-sm font-medium">Types</a>
+          <a routerLink="/users" class="text-white hover:bg-indigo-500 hover:bg-opacity-75 rounded-md py-2 px-3 text-sm font-medium" aria-current="page" routerLinkActive="bg-indigo-700">Users</a>
+          <a routerLink="/files" class="text-white hover:bg-indigo-500 hover:bg-opacity-75 rounded-md py-2 px-3 text-sm font-medium" routerLinkActive="bg-indigo-700">Files</a>
+          <a routerLink="/types" class="text-white hover:bg-indigo-500 hover:bg-opacity-75 rounded-md py-2 px-3 text-sm font-medium" routerLinkActive="bg-indigo-700">Types</a>
         </div>
       </div>
     </nav>
