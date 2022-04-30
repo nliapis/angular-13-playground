@@ -1,28 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../users/users.component';
-
-export interface File {
-  creationDateTime: Date;
-  status:           string;
-  modifiedBy:       number;
-  type:             string;
-  uri:              string;
-  version:          number;
-  id:               string;
-  fileId:           string;
-  scheduled:        boolean;
-  title:            string;
-  createdBy:        number;
-  modifiedDateTime: Date;
-  live:             boolean;
-  popularity:       boolean;
-}
-
-export interface FileWithUser {
-  type:             string;
-  createdBy:        User;
-  modifiedBy:       User;
-}
+import { FileWithUser } from '../models/file';
+import { FilesService } from '../services/files.service';
 
 @Component({
   selector: 'app-files',
@@ -32,18 +10,16 @@ export interface FileWithUser {
 export class FilesComponent implements OnInit {
   filesWithUser: FileWithUser[] = [];
 
-  async ngOnInit() {
-    const [usersResponse, filesResponse] = await Promise.all([
-      fetch('http://localhost:3001/Users'),
-      fetch('http://localhost:3001/Files')
-    ]);
-    const users: User[] = await usersResponse.json();
-    const files: File[] = await filesResponse.json();
+  constructor(
+    private filesService: FilesService,
+  ) {
+  }
 
-    this.filesWithUser = files.map(file => ({
-      type: file.type,
-      createdBy: users.find(user => user.id === file.createdBy) as User,
-      modifiedBy: users.find(user => user.id === file.modifiedBy)  as User,
-    }))
+  async ngOnInit() {
+    try {
+      this.filesWithUser = await this.filesService.filesWithUsers();
+    } catch (error) {
+      console.log(error);
+    }
   }
 }

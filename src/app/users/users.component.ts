@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
-export interface User {
-  id: number;
-  givenName: string;
-  familyName: string;
-}
+import { User } from '../models/user';
+import { UsersService } from '../services/users.service';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -13,8 +9,16 @@ export interface User {
 export class UsersComponent implements OnInit {
   users: User[] = [];
 
+  constructor(
+    private usersService: UsersService,
+  ) {
+  }
+
   async ngOnInit() {
-    const usersResponse = await fetch('http://localhost:3001/Users');
-    this.users = await usersResponse.json();
+    try {
+      this.users = await this.usersService.fetch();
+    } catch (error) {
+      console.log(error);
+    }
   }
 }

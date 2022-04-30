@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FileType, FileTypeWithFile } from '../models/type';
+import { FileTypesService } from '../services/types.service';
 
 @Component({
   selector: 'app-types',
@@ -6,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./types.component.css']
 })
 export class TypesComponent implements OnInit {
+  fileTypes: FileTypeWithFile[] = [];
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(
+    private fileTypesService: FileTypesService,
+  ) {
   }
 
+  async ngOnInit() {
+    this.fileTypes = await this.fileTypesService.fileTypesWithFiles();
+  }
 }
