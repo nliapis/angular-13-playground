@@ -13,9 +13,8 @@ export interface User {
 export class UsersComponent implements OnInit {
   users: User[] = [];
 
-  ngOnInit(): void {
-    fetch('http://localhost:3001/Users')
-      .then(response => response.json())
-      .then(data => this.users = data);
+  async ngOnInit() {
+    const usersResponse = await fetch('http://localhost:3001/Users');
+    this.users = await usersResponse.json();
   }
 }
