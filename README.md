@@ -1,4 +1,4 @@
-# FoolproofTask
+# Angular13 Playground
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.4.
 
@@ -25,3 +25,8 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## TODO ITEMS
+- Add Unit tests
+- Improve search functionality - when user changes task and search value exists we should filter the results - pass value to URL as a query param
+- As the filtering happens in the client didn't add a debounce to the search field - this should be added if we move the filtering to the server
