@@ -5,8 +5,7 @@ import { FileTypesService } from '../services/types.service';
 
 @Component({
   selector: 'app-types',
-  templateUrl: './types.component.html',
-  styleUrls: ['./types.component.css']
+  templateUrl: './types.component.html'
 })
 export class TypesComponent implements OnInit {
   fileTypes: FileTypeWithFile[] = [];
