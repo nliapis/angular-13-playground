@@ -1,4 +1,4 @@
-import { FileWithUser } from "./file";
+import { FileWithUser } from "./files";
 
 export interface FileType {
   creationDateTime: Date;

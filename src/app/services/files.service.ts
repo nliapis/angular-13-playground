@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { File, FileWithUser } from '../models/file';
+import { File, FileWithUser } from '../models/files';
 import { User } from '../models/user';
 import { BaseService } from './base.service';
 import { firstValueFrom } from 'rxjs';

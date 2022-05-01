@@ -7,9 +7,9 @@ import { firstValueFrom } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class UsersService extends BaseService{
+export class UsersService extends BaseService {
   constructor(private http: HttpClient) {
-    super()
+    super();
   }
 
   fetch(): Promise<User[]> {

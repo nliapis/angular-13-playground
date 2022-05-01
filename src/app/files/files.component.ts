@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FileWithUser } from '../models/file';
+import { FileWithUser } from '../models/files';
 import { FilesService } from '../services/files.service';
 
 @Component({

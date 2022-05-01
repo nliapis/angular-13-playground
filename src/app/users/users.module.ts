@@ -6,11 +6,11 @@ import { UsersService } from '../services/users.service';
 
 @NgModule({
   declarations: [
-    UsersComponent
+    UsersComponent,
   ],
   imports: [
     CommonModule,
-    UsersRoutingModule
+    UsersRoutingModule,
   ],
   providers: [UsersService]
 })
