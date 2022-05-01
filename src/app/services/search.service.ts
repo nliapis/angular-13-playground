@@ -6,9 +6,12 @@ import { Observable, Subject } from 'rxjs';
 })
 export class SearchService {
   private searchValue = new Subject<string>();
-  searchValue$ = this.searchValue.asObservable();
 
-  public setSearchValue(value: string): void {
+  getSearchValue(): Observable<string> {
+    return this.searchValue.asObservable();
+  }
+
+  setSearchValue(value: string): void {
     this.searchValue.next(value);
   }
 }
