@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FileWithUser } from '../models/files';
 import { FilesService } from '../services/files.service';
+import { SearchService } from '../services/search.service';
 
 @Component({
   selector: 'app-files',
@@ -12,6 +13,7 @@ export class FilesComponent implements OnInit {
 
   constructor(
     private filesService: FilesService,
+    private searchService: SearchService,
   ) {
   }
 
@@ -21,5 +23,9 @@ export class FilesComponent implements OnInit {
     } catch (error) {
       console.log(error);
     }
+
+    this.searchService.searchValue$.subscribe(value => {
+      this.filesWithUser = this.filesService.handleSearchUsers(value, this.filesWithUser);
+    });
   }
 }

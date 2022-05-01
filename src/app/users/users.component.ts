@@ -9,7 +9,6 @@ import { UsersService } from '../services/users.service';
 })
 export class UsersComponent implements OnInit {
   users: User[] = [];
-  data: string = '';
 
   constructor(
     private usersService: UsersService,
@@ -18,20 +17,14 @@ export class UsersComponent implements OnInit {
   }
 
   async ngOnInit() {
-    let initialUsers: User[] = []
     try {
       this.users = await this.usersService.fetch();
-      initialUsers = [...this.users];
     } catch (error) {
       console.log(error);
     }
 
-    this.searchService.searchValue$.subscribe(res => {
-      if (res) {
-        this.users = this.users.filter(user => user.familyName.toLowerCase().includes(res.toLowerCase()) || user.givenName.toLowerCase().includes(res.toLowerCase()))
-      } else {
-        this.users = initialUsers;
-      }
+    this.searchService.searchValue$.subscribe(async (value) => {
+      this.users = this.usersService.handleSearch(value, this.users);
     });
   }
 }

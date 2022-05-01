@@ -8,7 +8,8 @@ import { FilesService } from './files.service';
 @Injectable({
   providedIn: 'root'
 })
-export class FileTypesService extends BaseService{
+export class FileTypesService extends BaseService {
+  data: FileTypeWithFile[] = [];
   constructor(
     private http: HttpClient,
     private filesService: FilesService,
@@ -26,10 +27,22 @@ export class FileTypesService extends BaseService{
       this.fetch(),
     ]);
 
-    return types.map(type => ({
+    this.data = types.map(type => ({
       name: type.name,
       files: files.map(file => file.type === type.id ? file : null).filter(item => item)
     })) as FileTypeWithFile[];
+
+    return this.data;
   }
 
+  handleSearch(value: string, files: FileTypeWithFile[]) {
+    if (!value) {
+      return this.data;
+    }
+
+    return files.map(type => ({
+      name: type.name,
+      files: this.filesService.handleSearchUsers(value, type.files)
+    }));
+  }
 }

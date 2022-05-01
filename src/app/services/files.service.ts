@@ -9,7 +9,9 @@ import { UsersService } from './users.service';
 @Injectable({
   providedIn: 'root'
 })
-export class FilesService extends BaseService{
+export class FilesService extends BaseService {
+  data: FileWithUser[] = [];
+
   constructor(private http: HttpClient, private usersService: UsersService) {
     super()
   }
@@ -24,10 +26,25 @@ export class FilesService extends BaseService{
       this.fetch(),
     ]);
 
-    return files.map(file => ({
+    this.data = files.map(file => ({
       type: file.type,
       createdBy: users.find(user => user.id === file.createdBy) as User,
       modifiedBy: users.find(user => user.id === file.modifiedBy)  as User,
-    }))
+    }));
+
+    return this.data;
+  }
+
+  handleSearchUsers(value: string, files: FileWithUser[]) {
+    if (!value) {
+      return this.data;
+    }
+
+    return files.filter(file =>
+      file.createdBy.familyName.toLowerCase().includes(value.toLowerCase()) ||
+      file.createdBy.givenName.toLowerCase().includes(value.toLowerCase()) ||
+      file.modifiedBy.givenName.toLowerCase().includes(value.toLowerCase()) ||
+      file.modifiedBy.givenName.toLowerCase().includes(value.toLowerCase())
+    );
   }
 }
